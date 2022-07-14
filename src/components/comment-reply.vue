@@ -2,9 +2,9 @@
     <div class="comment-wrapper">
         <div class="comment-card">
             <div class="score-wrapper">
-                <img src="../assets/icon-plus.svg" v-on:click="countUp">
-                <span class="score">{{score}}</span>
-                <img src="../assets/icon-minus.svg" v-on:click="countDown">
+                <img src="../assets/icon-plus.svg" v-on:click="countUp" :class="{ 'active': isGood }">
+                <span class="score" :class="{ 'minus': isMinus }">{{score}}</span>
+                <img src="../assets/icon-minus.svg" v-on:click="countDown" :class="{ 'active': isBad }">
             </div>
             <div class="content-wrapper">
                 <div class="row">
@@ -53,10 +53,14 @@ export default {
     data() {
         return {
             score: this.comment.score,
+            initialScore: this.comment.score,
             isCurrentUser: this.comment.user.username == this.currentUser.username,
             isEditing: false,
             content: this.comment.content,
             isReplying: false,
+            isMinus: false,
+            isGood: false, 
+            isBad: false,
         }
     },
     props: {
@@ -65,10 +69,27 @@ export default {
     },
     methods: {
         countUp() {
-            this.score++;
+            this.isBad = false;
+            this.isMinus = false;
+            if (this.score <= this.initialScore) {
+                this.score++;
+            }
+            if (this.score > this.initialScore) {
+                this.isGood = true;
+            }
         },
         countDown() {
-            this.score--;
+            this.isGood = false;
+            this.isMinus = false;
+            if (this.score >= this.initialScore) {
+                this.score--;
+            }
+            if (this.score < this.initialScore) {
+                this.isBad = true;
+            }
+            if (this.score < 0) {
+                this.isMinus = true;
+            }
         },
         deleteComment() {
              this.$emit('delete', this.comment.id);
