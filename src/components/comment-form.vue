@@ -1,6 +1,6 @@
 <template>
     <div class="comment-form">
-        <img :src="require(`../assets/${this.avatarSrc}`)">
+        <img :src="require(`../assets/${this.avatarSrc}`)" alt="avatar">
         <textarea placeholder="Add a comment..." v-model="comment" id="comment-text"></textarea>
         <button id="send-comment" @click="submit">{{buttonText}}</button>
     </div>

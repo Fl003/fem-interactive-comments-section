@@ -2,29 +2,29 @@
     <div class="comment-wrapper">
         <div class="comment-card">
             <div class="score-wrapper">
-                <img src="../assets/icon-plus.svg" v-on:click="countUp" :class="{ 'active': isGood }">
+                <img src="../assets/icon-plus.svg" alt="plus" v-on:click="countUp" :class="{ 'active': isGood }">
                 <span class="score" :class="{ 'minus': isMinus }">{{score}}</span>
-                <img src="../assets/icon-minus.svg" v-on:click="countDown" :class="{ 'active': isBad }">
+                <img src="../assets/icon-minus.svg" alt="minus" v-on:click="countDown" :class="{ 'active': isBad }">
             </div>
             <div class="content-wrapper">
                 <div class="row">
                     <div class="user-wrapper">
-                        <img :src="require(`../assets/${this.comment.user.image.png}`)" class="avatar">
+                        <img :src="require(`../assets/${this.comment.user.image.png}`)" alt="avatar" class="avatar">
                         <p class="username">{{this.comment.user.username}}</p>
                         <span class="me-indicator" v-if="isCurrentUser">you</span>
                         <p class="date">{{this.comment.createdAt}}</p>
                     </div>
                     <div class="options-wrapper">
                         <div class="delete-wrapper" v-if="isCurrentUser" @click="deleteComment">
-                            <img src="../assets/icon-delete.svg">
+                            <img src="../assets/icon-delete.svg" alt="delete">
                             <p>Delete</p>
                         </div>
                         <div class="edit-wrapper" v-if="isCurrentUser" @click="editComment">
-                            <img src="../assets/icon-edit.svg">
+                            <img src="../assets/icon-edit.svg" alt="edit">
                             <p>Edit</p>
                         </div>
                         <div class="reply-wrapper" v-if="!isCurrentUser" @click="replyToComment">
-                            <img src="../assets/icon-reply.svg">
+                            <img src="../assets/icon-reply.svg" alt="reply">
                             <p>Reply</p>
                         </div>
                     </div>
